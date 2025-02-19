@@ -1,7 +1,7 @@
 package com.example.ATMBackend.service;
 
 import com.example.ATMBackend.model.Transaction;
-import com.example.ATMBackend.repository.transactionRepository;
+import com.example.ATMBackend.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ import java.util.List;
 public class transactionService {
 
 
-    private transactionRepository transactionRepo;
+    private TransactionRepository transactionRepo;
 
     @Autowired
-    public transactionService(transactionRepository transactionRepo){
+    public transactionService(TransactionRepository transactionRepo){
         this.transactionRepo=transactionRepo;
 
     }

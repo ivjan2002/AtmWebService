@@ -1,39 +1,42 @@
 package com.example.ATMBackend.model;
 
-import com.example.ATMBackend.ENUM.AccountType;
+
+import com.example.ATMBackend.ENUM.Status;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Account {
+@AllArgsConstructor
+public class CreditCard {
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="account_id")
+    @Column(name="creditcard_id")
     @JsonProperty("id")
     private int id;
 
-    @JsonProperty("balance")
-    private double balance;
+    @JsonProperty("pin")
+    private String pin;
 
-    @JsonProperty("accountOpeningDate")
-    private Date accountOpeningDate;
+    @JsonProperty("expirationDate")
+    private Date expirationDate;
 
+    @JsonProperty("creditLimit")
+    private Double creditLimit;
+
+    @JsonProperty("status")
     @Enumerated(EnumType.STRING)
-    @JsonProperty("accountType")
-    private AccountType accountType;
+    private Status status;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
+    @JoinColumn(name="account_id",nullable=false)
+    private Account account;
 }

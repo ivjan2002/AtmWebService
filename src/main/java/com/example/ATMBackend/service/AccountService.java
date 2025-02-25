@@ -25,7 +25,7 @@ public class AccountService {
             return "Nedovoljno sredstava na računu!";
         }
 
-        int updatedRows = accountRepository.withdraw(accountId, amount);
+        int updatedRows = accountRepository.deposit(accountId, amount);
         return updatedRows > 0 ? "Isplata uspešna!" : "Greška pri isplati.";
     }
 
@@ -35,7 +35,7 @@ public class AccountService {
             return "Iznos mora biti veći od 0!";
         }
 
-        int updatedRows = accountRepository.deposit(accountId, amount);
+        int updatedRows = accountRepository.withdraw(accountId, amount);
         return updatedRows > 0 ? "Uplata uspešna!" : "Greška pri uplati.";
     }
 

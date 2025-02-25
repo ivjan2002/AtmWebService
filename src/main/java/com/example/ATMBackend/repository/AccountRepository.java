@@ -12,11 +12,11 @@ public interface AccountRepository extends JpaRepository<Account,Integer> {
     Double findBalance();
 
     @Modifying
-    @Query("UPDATE Account a SET a.balance = a.balance - :amount WHERE a.id = :accountId AND a.balance >= :amount")
+    @Query("UPDATE Account a SET a.balance = a.balance + :amount WHERE a.id = :accountId AND a.balance >= :amount")
     int deposit(@Param("accountId") Integer accountId, @Param("amount") Double amount);
 
     @Modifying
-    @Query("UPDATE Account a SET a.balance = a.balance + :amount WHERE a.id = :accountId")
+    @Query("UPDATE Account a SET a.balance = a.balance - :amount WHERE a.id = :accountId")
     int withdraw(@Param("accountId") Integer accountId, @Param("amount") Double amount);
 
 }

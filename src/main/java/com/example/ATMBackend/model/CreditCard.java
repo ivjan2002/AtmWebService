@@ -39,4 +39,21 @@ public class CreditCard {
     @ManyToOne
     @JoinColumn(name="account_id",nullable=false)
     private Account account;
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
 }

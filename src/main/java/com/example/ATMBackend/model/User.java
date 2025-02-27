@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -16,7 +17,7 @@ import lombok.Setter;
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="account_id")
+    @Column(name="user_id")
     @JsonProperty("id")
     private int id;
 
@@ -31,4 +32,13 @@ public class User {
 
     @JsonProperty("phoneNumber")
     private String phoneNumber;
+
+    @JsonProperty("dateOfBirth")
+    private Date dateOfBirth;
+
+    @JsonProperty("username")
+    private String username;
+
+    @JsonProperty("password")
+    private String password;
 }

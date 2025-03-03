@@ -13,13 +13,13 @@ public class AccountService {
         this.accountRepository=accountRepository;
     }
 
-    public Double getBalancefromDataBase(){
-        return accountRepository.findBalance();
+    public Double getBalancefromDataBase(Integer accountId){
+        return accountRepository.findBalance(accountId);
     }
 
     @Transactional
     public String depositAmount(Integer accountId, Double amount) {
-        Double currentBalance = getBalancefromDataBase();
+        Double currentBalance = getBalancefromDataBase(accountId);
 
         if (currentBalance < amount) {
             return "Nedovoljno sredstava na računu!";
@@ -37,6 +37,23 @@ public class AccountService {
 
         int updatedRows = accountRepository.withdraw(accountId, amount);
         return updatedRows > 0 ? "Uplata uspešna!" : "Greška pri uplati.";
+    }
+
+    @Transactional
+    public String transferAmount(Integer fromAccountId, Integer toAccountId, Double amount) {
+        if (amount <= 0) {
+            return "Iznos mora biti veći od 0!";
+        }
+
+        Double senderBalance = getBalancefromDataBase(fromAccountId);
+        if (senderBalance < amount) {
+            return "Nedovoljno sredstava na računu!";
+        }
+
+        int withdrawResult = accountRepository.transferWithdraw(fromAccountId, amount);
+        int depositResult = accountRepository.transferDeposit(toAccountId, amount);
+
+        return (withdrawResult > 0 && depositResult > 0) ? "Transfer uspešan!" : "Greška pri transferu.";
     }
 
 }

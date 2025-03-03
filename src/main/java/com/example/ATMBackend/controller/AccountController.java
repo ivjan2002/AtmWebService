@@ -17,8 +17,8 @@ public class AccountController {
     }
 
     @GetMapping("/balance")
-    public Double getAmount(){
-        return accountService.getBalancefromDataBase();
+    public Double getAmount(@RequestParam Integer accountId){
+        return accountService.getBalancefromDataBase(accountId);
     }
 
     @PostMapping("/deposit")
@@ -29,6 +29,11 @@ public class AccountController {
     @PostMapping("/withdraw")
     public String deposit(@RequestParam Integer accountId, @RequestParam Double amount) {
         return accountService.depositAmount(accountId, amount);
+    }
+
+    @PostMapping("/transfer")
+    public String transfer(@RequestParam Integer fromAccountId, @RequestParam Integer toAccountId, @RequestParam Double amount) {
+        return accountService.transferAmount(fromAccountId, toAccountId, amount);
     }
 
 }

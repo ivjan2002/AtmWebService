@@ -14,15 +14,5 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable()) // Isključuje CSRF zaštitu (privremeno)
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user/auth/register").permitAll() // Omogućava registraciju bez autentifikacije
-                        .anyRequest().authenticated() // Sve ostalo zahteva prijavu
-                );
-        return http.build();
-    }
+    
 }

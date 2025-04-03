@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class transactionService {
+public class TransactionService {
 
 
     private TransactionRepository transactionRepo;
 
     @Autowired
-    public transactionService(TransactionRepository transactionRepo){
+    public TransactionService(TransactionRepository transactionRepo){
         this.transactionRepo=transactionRepo;
 
     }

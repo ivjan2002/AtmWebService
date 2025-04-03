@@ -11,17 +11,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class UserService {
 
     private UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
-    public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder){
+    public UserService(UserRepository userRepository){
         this.userRepository=userRepository;
-        this.passwordEncoder=passwordEncoder;
-
     }
 
-    public User getUser(User user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public User getUser(User user) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
         return userRepository.save(user);
     }
 

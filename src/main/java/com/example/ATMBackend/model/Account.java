@@ -32,10 +32,10 @@ public class Account {
     @JsonProperty("accountType")
     private AccountType accountType;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", nullable = false)
-//    private User user;
-//
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
 
 
 }
